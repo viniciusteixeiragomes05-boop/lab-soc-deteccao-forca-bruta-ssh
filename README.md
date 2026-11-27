@@ -17,17 +17,20 @@ Simular um ataque de força bruta (Brute Force) contra o serviço SSH em ambient
 ### 1. Simulação do Ataque (Brute Force SSH)
 Execução de múltiplas tentativas de autenticação inválida via SSH a partir de um host externo utilizando o usuário `invasor`:
 
-![Simulação de Ataque SSH](evidencias/01-ataque-ssh.png)
+<img width="871" height="521" alt="65e8b217-8508-4259-90ba-0b771f320992" src="https://github.com/user-attachments/assets/9970ca03-0d9f-42cf-a9ee-935b52f1af74" />
+
 
 ### 2. Detecção e Análise Forense (Monitoramento)
 Identificação dos Indicadores de Comprometimento (IOCs), origem do tráfego (`192.168.2.105`) e usuário alvo através da filtragem de logs do serviço SSH (`sudo journalctl -u ssh | grep "Failed password"`):
 
-![Detecção nos Logs](evidencias/02-deteccao-logs.png)
+<img width="700" height="446" alt="1c1bd48c-8003-473b-97df-e685e573bfa2" src="https://github.com/user-attachments/assets/321977ee-30fa-43af-8d42-c4429e8ddf1c" />
+
 
 ### 3. Contenção e Resposta Automatizada (Fail2Ban)
 Configuração de política customizada em `/etc/fail2ban/jail.local` (`maxretry = 3`, `bantime = 600s`, `backend = systemd`). Após atingir o limite de tentativas, o IP atacante foi banido automaticamente:
 
-![Bloqueio Fail2Ban](evidencias/03-bloqueio-fail2ban.png)
+<img width="697" height="453" alt="b365f3f6-54a2-4859-b26d-f2092d25ca7f" src="https://github.com/user-attachments/assets/087fdc17-297e-435a-b630-c8ddbbe01fc7" />
+
 
 ---
 
